@@ -1,11 +1,11 @@
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
+var db_config = {
   host     : 'eu-cdbr-west-01.cleardb.com',
   user     : 'b7fd61537111ca',
   password : '74cd2cd7',
   database : 'heroku_e8e29ea723b7f04',
   "insecureAuth" : true
-});
+};
 
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
