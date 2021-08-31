@@ -1,9 +1,9 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  //host     : 'localhost',
+  host     : 'eu-cdbr-west-01.cleardb.com',
   user     : 'b7fd61537111ca',
   password : '74cd2cd7',
-  database : 'TutoNodeJS',
+  database : 'heroku_e8e29ea723b7f04',
   "insecureAuth" : true
 });
  
