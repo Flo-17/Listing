@@ -7,6 +7,8 @@ var db_config = {
   "insecureAuth" : true
 };
 
+var connection = mysql.createConnection(db_config)
+
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                   // the old one cannot be reused.
