@@ -1,3 +1,4 @@
+<% if(locals.flash && locals.flash.error) { %>
 <div class="ui negative message">
 <% if(typeof errors!= 'undefined') { %>
     <%    errors.forEach(function(error){ %>
@@ -5,3 +6,4 @@
     <%    })        %>
     <% } %>
 </div>
+<% } %>

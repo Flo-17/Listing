@@ -41,7 +41,7 @@ app.post('/', (request,response) =>{
 
     if(request.body.message === undefined || request.body.message === '')
     {
-        request.flash('error', "Vous n'avez pas entré de message.")    
+        request.flash('errorPost', "Vous n'avez pas entré de message.")    
         response.redirect('/')    
     }
     else
@@ -78,16 +78,19 @@ app.post('/register', (request, response) => {
     const {name,email, password, password2} = request.body;
     let errors = [];
     if(!name || !email || !password || !password2) {
-        request.flash('error', "Vous n'avez pas entré de message.")  
+        request.flash('error', "Veuillez remplir tous les champs.")  
+        errors.push({msg : "Veuillez remplir tous les champs."});
     }
     //check if match
     if(password !== password2) {
-        request.flash('error', "Vous n'avez pas entré de message.")  
+        request.flash('error', "Les mots de passe ne correspondent pas.")  
+        errors.push({msg : "Les mots de passe ne correspondent pas."});
     }
     
     //check if password is more than 6 characters
     if(password.length < 6 ) {
-        request.flash('error', "Vous n'avez pas entré de message.")  
+        request.flash('error', "Le mot de passe nécéssite 6 caractères minimum.")  
+        errors.push({msg : "Le mot de passe nécéssite 6 caractères minimum."});
     }
     if(errors.length > 0 ) {
         response.render('pages/register', {
@@ -103,6 +106,7 @@ app.post('/register', (request, response) => {
             user = User.exist(request.body.email, function() {  
             if(user) {
                 request.flash('error', "E-mail déja enregistré.")  
+                errors.push({msg : "E-mail déja enregistré."});         
                 render(response,errors,name,email,password,password2);
                 
                } else {
@@ -111,7 +115,5 @@ app.post('/register', (request, response) => {
                 })
             }    
         })
-        console.log(' Name ' + name+ ' email :' + email+ ' passw:' + password);
-        response.redirect('login')
     }
 })

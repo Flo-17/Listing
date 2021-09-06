@@ -1,9 +1,9 @@
 <%- include ('./header.ejs') %>
 
     <div class="ui main container">
-        <% if(locals.flash && locals.flash.error) { %>
+        <% if(locals.flash && locals.flash.errorPost) { %>
         <div class="ui negative message">
-            <%= flash.error %>
+            <%= flash.errorPost %>
         </div>
         <% } %>
 
