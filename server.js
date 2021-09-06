@@ -2,6 +2,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 const Message = require('./models/message');
+const { request } = require('express');
 
 require('dotenv').config({path: './config/.env'})
 let app = express();
@@ -60,4 +61,57 @@ app.get('/message/:id', (request, response) => {
     Message.find(request.params.id, function (message) { 
         response.render('messages/show', {message: message} )
     })
+})
+
+app.get('/login', (request, response) => {
+    
+    response.render('pages/login')
+})
+
+app.get('/register', (request, response) => {
+
+    response.render('pages/register')
+})
+
+app.post('/register', (request, response) => {
+
+    const {name,email, password, password2} = request.body;
+    let errors = [];
+    if(!name || !email || !password || !password2) {
+        request.flash('error', "Vous n'avez pas entré de message.")  
+    }
+    //check if match
+    if(password !== password2) {
+        request.flash('error', "Vous n'avez pas entré de message.")  
+    }
+    
+    //check if password is more than 6 characters
+    if(password.length < 6 ) {
+        request.flash('error', "Vous n'avez pas entré de message.")  
+    }
+    if(errors.length > 0 ) {
+        response.render('pages/register', {
+            errors : errors,
+            name : name,
+            email : email,
+            password : password,
+            password2 : password2})
+        } 
+        else {
+            //validation passed
+            let User = require('./models/user')
+            user = User.exist(request.body.email, function() {  
+            if(user) {
+                request.flash('error', "E-mail déja enregistré.")  
+                render(response,errors,name,email,password,password2);
+                
+               } else {
+                User.create(request.body.email, request.body.password, function() {
+                response.redirect('login')
+                })
+            }    
+        })
+        console.log(' Name ' + name+ ' email :' + email+ ' passw:' + password);
+        response.redirect('login')
+    }
 })

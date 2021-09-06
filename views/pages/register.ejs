@@ -1,0 +1,56 @@
+<%- include ('./header.ejs') %>
+
+<div class="ui main container">
+<h2>Register</h2>
+<form action="/register" method="POST">
+
+  <%- include ('../partials/messages') %>
+
+  <div class="editableZone">
+      <label for="name">Nom : </label>
+      <input
+        type="name"
+        name="name"
+        placeholder="Entrez votre nom"
+        value="<%= typeof name != 'undefined' ? name : '' %>"
+        class="inputs"
+      />
+  </div>
+  <div class="editableZone">
+    <label for="email">E-mail : </label>
+    <input
+      type="email"
+      name="email"
+      placeholder="Entrez votre e-mail"
+      value="<%= typeof email != 'undefined' ? email : '' %>"
+      class="inputs"
+    />
+  </div>
+  <div class="editableZone">
+    <label for="password">Mot de passe : </label>
+    <input
+      type="password"
+      name="password"
+      placeholder="Mot de passe"
+      value="<%= typeof password != 'undefined' ? password : '' %>"
+      class="inputs"
+    />
+  </div>
+  <div class="editableZone">
+    <label for="password2">Confirmez le mot de passe : </label>
+    <input
+      type="password"
+      name="password2"
+      placeholder="Confirmez le mot de passe"
+      value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+      class="inputs"
+    />
+  </div>
+  <button type="submit" class="ui blue labeled submit icon button">
+    <i class="arrow circle right icon"></i>S'inscrire
+  </button>  
+</form>
+<p class="goToLogin">Vous avez déja un compte ?<a href="/login"> S'identifier</a></p>
+</div>
+
+<%- include ('./footer.ejs') %>

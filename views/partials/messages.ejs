@@ -1,0 +1,7 @@
+<div class="ui negative message">
+<% if(typeof errors!= 'undefined') { %>
+    <%    errors.forEach(function(error){ %>
+    <p> <%= error.msg %></p>
+    <%    })        %>
+    <% } %>
+</div>

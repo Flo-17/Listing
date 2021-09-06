@@ -1,0 +1,30 @@
+<%- include ('./header.ejs') %>
+   
+<div class="ui main container">
+<h2>Login</h2>
+<form action="/login" method="POST">
+<div class="editableZone">
+  <label for="email">Email : </label>
+  <input
+  type="email"
+  name="email"
+  placeholder="Enter Email"
+  class="inputs"
+  />
+</div>
+<div class="editableZone">
+    <label for="password">Password : </label>
+    <input
+      type="password"
+      name="password"
+      placeholder="Enter Password"
+      class="inputs"
+    />
+</div>
+<button type="submit" class="ui blue labeled submit icon button">
+  <i class="arrow circle right icon"></i>Login
+</button>  
+</form>
+</div>
+
+<%- include ('./footer.ejs') %>
