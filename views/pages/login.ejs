@@ -3,29 +3,32 @@
 <div class="ui main container">
 <h2>Login</h2>
 <form action="/login" method="POST">
-<div class="editableZone">
-  <label for="email">E-mail : </label>
-  <input
-  type="email"
-  name="email"
-  placeholder="Entrez votre e-mail"
-  class="inputs"
-  />
-</div>
-<div class="editableZone">
-    <label for="password">Mot de passe : </label>
+
+  <%- include ('../partials/errorsLogin') %>
+
+  <div class="editableZone">
+    <label for="email">E-mail : </label>
     <input
-      type="password"
-      name="password"
-      placeholder="Entrez votre mot de passe"
-      class="inputs"
+    type="email"
+    name="email"
+    placeholder="Entrez votre e-mail"
+    class="inputs"
     />
-</div>
-<button type="submit" class="ui blue labeled submit icon button">
-  <i class="arrow circle right icon"></i>Login
-</button>  
-</form>
-<p class="goTo">Pas encore inscrit ?<a href="/register"> S'inscrire</a></p>
-</div>
+  </div>
+  <div class="editableZone">
+      <label for="password">Mot de passe : </label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Entrez votre mot de passe"
+        class="inputs"
+      />
+  </div>
+  <button type="submit" class="ui blue labeled submit icon button">
+    <i class="arrow circle right icon"></i>Login
+  </button>  
+  </form>
+  <p class="goTo">Pas encore inscrit ?<a href="/register"> S'inscrire</a></p>
+  </div>
 
 <%- include ('./footer.ejs') %>

@@ -1,0 +1,9 @@
+<% if(locals.flash && locals.flash.error) { %>
+<div class="ui negative message">
+<% if(typeof errorsRegister!= 'undefined') { %>
+    <%    errorsRegister.forEach(function(error){ %>
+    <p> <%= error.msg %></p>
+    <%    })        %>
+    <% } %>
+</div>
+<% } %>
