@@ -2,6 +2,10 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 const Message = require('./models/message');
+<<<<<<< HEAD
+=======
+var session = require('express-session')
+>>>>>>> 7b6ab2ba5f865094723a6d6be09f2390e64b8eaa
 
 require('dotenv').config({path: './config/.env'})
 let app = express();
