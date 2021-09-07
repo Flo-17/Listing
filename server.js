@@ -2,7 +2,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 const Message = require('./models/message');
-const { request } = require('express');
+var session = require('express-session')
 
 require('dotenv').config({path: './config/.env'})
 let app = express();
@@ -86,7 +86,6 @@ app.post('/register', (request, response) => {
         request.flash('error', "Les mots de passe ne correspondent pas.")  
         errors.push({msg : "Les mots de passe ne correspondent pas."});
     }
-    
     //check if password is more than 6 characters
     if(password.length < 6 ) {
         request.flash('error', "Le mot de passe nécéssite 6 caractères minimum.")  
@@ -100,20 +99,26 @@ app.post('/register', (request, response) => {
             password : password,
             password2 : password2})
         } 
-        else {
+        else {        
             //validation passed
             let User = require('./models/user')
-            user = User.exist(request.body.email, function() {  
-            if(user) {
+            User.exist(request.body.email, function(user) {  
+            if (user.row != undefined){  
                 request.flash('error', "E-mail déja enregistré.")  
-                errors.push({msg : "E-mail déja enregistré."});         
-                render(response,errors,name,email,password,password2);
-                
-               } else {
-                User.create(request.body.email, request.body.password, function() {
+                errors.push({msg : "E-mail déja enregistré."}); 
+                response.render('pages/register', {
+                    errors : errors,
+                    name : name,
+                    email : email,
+                    password : password,
+                    password2 : password2})
+                } 
+            else{
+                User.create(request.body.name, request.body.email, request.body.password, function() {
                 response.redirect('login')
                 })
             }    
+            
         })
     }
 })
